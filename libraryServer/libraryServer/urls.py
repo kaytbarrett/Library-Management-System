@@ -15,8 +15,31 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from libraryApp.views import (BookListCreateView, BookRUDView, 
+                              UserProfileListCreateView, UserProfileRUDView, 
+                              AuthorListCreateView, AuthorRUDView,
+                              PublisherListCreateView, PublisherRUDView,
+                              GenreListCreateView, GenreRUDView,
+                              BookCopyListCreateView, BookCopyRUDView,
+                              CheckoutListCreateView, CheckoutRUDView)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api-auth/', include('rest_framework.urls')),
+    path('api/books/', BookListCreateView.as_view(), name="book-list"),
+    path('api/books/<int:pk>/', BookRUDView.as_view(), name="book-detail"),
+    path('api/users/', UserProfileListCreateView.as_view(), name="userprofile-list"),
+    path('api/users/<int:pk>/', UserProfileRUDView.as_view(), name="userprofile-detail"),
+    path('api/authors/', AuthorListCreateView.as_view(), name="author-list"),
+    path('api/authors/<int:pk>/', AuthorRUDView.as_view(), name="author-detail"),
+    path('api/publishers/', PublisherListCreateView.as_view(), name="publisher-list"),
+    path('api/publishers/<int:pk>/', PublisherRUDView.as_view(), name="publisher-detail"),
+    path('api/genres/', GenreListCreateView.as_view(), name="genre-list"),
+    path('api/genres/<int:pk>/', GenreRUDView.as_view(), name="genre-detail"),
+    path('api/bookcopy/', BookCopyListCreateView.as_view(), name="bookcopy-list"),
+    path('api/bookcopy/<int:pk>/', BookCopyRUDView.as_view(), name="bookcopy-detail"),
+    path('api/checkout/', CheckoutListCreateView.as_view(), name="checkout-list"),
+    path('api/checkout/<int:pk>/', CheckoutRUDView.as_view(), name="checkout-detail"),
 ]
+
