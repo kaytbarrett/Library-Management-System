@@ -15,6 +15,21 @@ class Command(BaseCommand):
         num_users = options['users']
         num_books = options['books']
 
+        # Create authors
+        author_names = ['Harper Lee', 'F. Scott Fitzgerald', 'George Orwell', 'J.D. Salinger', 'William Golding', 'J.R.R. Tolkien', 'Jane Austen', 'J.K. Rowling']
+        for author_name in author_names:
+            Author.objects.get_or_create(name=author_name)
+
+        # Create Publishers
+        publisher_names = ['Penguin Classics', 'Random House', 'HarperCollins']
+        for publisher_name in publisher_names:
+             Publisher.objects.get_or_create(name=publisher_name)
+        
+        # Create genres
+        genre_names = ['Fiction', 'Horror', 'Fantasy', 'Mystery', 'Science Fiction']
+        for genre_name in genre_names:
+            Genre.objects.get_or_create(name=genre_name)
+
         for user_num in range(1, num_users + 1):
             username = f'user{user_num}'
             raw_password = f'password{user_num}'  # Set password based on user number
@@ -25,6 +40,7 @@ class Command(BaseCommand):
 
             user = User.objects.create(username=username, password=hashed_password, email=email)
             UserProfile.objects.create(user=user, bio=f'Bio for {username}', phone_number=phone_number, name=name)
+    
 
         # Create books with cover images
         book_data = [
@@ -35,19 +51,19 @@ class Command(BaseCommand):
             {'title': 'Lord of the Flies', 'author': 'William Golding', 'publication_date': '1954-09-17', 'price': 13.99, 'cover_image': 'https://m.media-amazon.com/images/I/81t-Qi4X6HL._SL1500_.jpg'},
             {'title': 'The Hobbit', 'author': 'J.R.R. Tolkien', 'publication_date': '1937-09-21', 'price': 15.99, 'cover_image': 'https://m.media-amazon.com/images/I/71553UI53YL._SL1500_.jpg'},
             {'title': 'Pride and Prejudice', 'author': 'Jane Austen', 'publication_date': '1813-01-28', 'price': 14.99, 'cover_image': 'https://m.media-amazon.com/images/I/61vrbLFc8oL._SL1200_.jpg'},
-            {'title': 'Harry Potter and the Philosopher\'s Stone', 'author': 'J.K. Rowling', 'publication_date': '1997-06-26', 'price': 17.99},
-            {'title': 'Harry Potter and the Chamber of Secrets', 'author': 'J.K. Rowling', 'publication_date': '1998-07-02', 'price': 18.99},
-            {'title': 'Harry Potter and the Prisoner of Azkaban', 'author': 'J.K. Rowling', 'publication_date': '1999-07-08', 'price': 19.99},
-            {'title': 'Harry Potter and the Goblet of Fire', 'author': 'J.K. Rowling', 'publication_date': '2000-07-08', 'price': 21.99},
-            {'title': 'Harry Potter and the Order of the Phoenix', 'author': 'J.K. Rowling', 'publication_date': '2003-06-21', 'price': 22.99},
-            {'title': 'Harry Potter and the Half-Blood Prince', 'author': 'J.K. Rowling', 'publication_date': '2005-07-16', 'price': 23.99},
-            {'title': 'Harry Potter and the Deathly Hallows', 'author': 'J.K. Rowling', 'publication_date': '2007-07-21', 'price': 24.99},
+            {'title': 'Harry Potter and the Philosopher\'s Stone', 'author': 'J.K. Rowling', 'publication_date': '1997-06-26', 'price': 17.99, 'cover_image': 'https://m.media-amazon.com/images/I/71RVt35ZAbL._SL1200_.jpg'},
+            {'title': 'Harry Potter and the Chamber of Secrets', 'author': 'J.K. Rowling', 'publication_date': '1998-07-02', 'price': 18.99, 'cover_image': 'https://m.media-amazon.com/images/I/81gOJoEgVoL._SL1500_.jpg'},
+            {'title': 'Harry Potter and the Prisoner of Azkaban', 'author': 'J.K. Rowling', 'publication_date': '1999-07-08', 'price': 19.99, 'cover_image': 'https://m.media-amazon.com/images/I/91VZqV0Cy8L._SL1500_.jpg'},
+            {'title': 'Harry Potter and the Goblet of Fire', 'author': 'J.K. Rowling', 'publication_date': '2000-07-08', 'price': 21.99, 'cover_image': 'https://m.media-amazon.com/images/I/71-CKpDxEYL._SL1200_.jpg'},
+            {'title': 'Harry Potter and the Order of the Phoenix', 'author': 'J.K. Rowling', 'publication_date': '2003-06-21', 'price': 22.99, 'cover_image': 'https://m.media-amazon.com/images/I/813lOXWdSNL._SL1500_.jpg'},
+            {'title': 'Harry Potter and the Half-Blood Prince', 'author': 'J.K. Rowling', 'publication_date': '2005-07-16', 'price': 23.99, 'cover_image': 'https://m.media-amazon.com/images/I/81YvqjX4AdL._SL1500_.jpg'},
+            {'title': 'Harry Potter and the Deathly Hallows', 'author': 'J.K. Rowling', 'publication_date': '2007-07-21', 'price': 24.99, 'cover_image': 'https://m.media-amazon.com/images/I/81W7uynFyWL._SL1500_.jpg'},
         ]
 
         for book_info in book_data:
             author, _ = Author.objects.get_or_create(name=book_info['author'])
-            publisher, _ = Publisher.objects.get_or_create(name='Publisher Name')  # Add a default publisher
-            genre, _ = Genre.objects.get_or_create(name='Genre Name')  # Add a default genre
+            publisher = Publisher.objects.first()  # Use the default publisher
+            genre = Genre.objects.first()   # Use t default genre
 
             Book.objects.create(
                 title=book_info['title'],
