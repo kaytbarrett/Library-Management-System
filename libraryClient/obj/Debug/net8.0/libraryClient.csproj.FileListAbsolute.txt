@@ -31,3 +31,4 @@
 /Users/katiebarrett/Desktop/personalProjects/library/libraryClient/bin/Debug/net8.0/Newtonsoft.Json.dll
 /Users/katiebarrett/Desktop/personalProjects/library/libraryClient/obj/Debug/net8.0/libraryClient.csproj.AssemblyReference.cache
 /Users/katiebarrett/Desktop/personalProjects/library/libraryClient/obj/Debug/net8.0/libraryClient.csproj.CopyComplete
+/Users/katiebarrett/Desktop/personalProjects/library/libraryClient/bin/Debug/net8.0/System.Security.Permissions.dll

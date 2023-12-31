@@ -16,6 +16,7 @@ else
             <tr>
                 <th>Title</th>
                 <th>Author</th>
+                <th>Cover Image</th>
             </tr>
         </thead>
         <tbody>
@@ -24,6 +25,7 @@ else
                 <tr>
                     <td>@book["title"]</td>
                     <td>@book["author"]</td>
+                    <td><img src='@book["cover_image"]' alt='Cover Image' width='25%' height='25%'/></td>
                 </tr>
             }
         </tbody>
@@ -39,4 +41,3 @@ else
         books = JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(response) ?? new List<Dictionary<string, object>>();
     }
 }
-
