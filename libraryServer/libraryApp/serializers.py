@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Book, UserProfile, Author, Publisher, Genre, BookCopy, Checkout
+from libraryApp.models import Book, UserProfile, Author, Publisher, Genre, BookCopy, Checkout
 
 class BookSerializer(serializers.ModelSerializer):
     class Meta:
