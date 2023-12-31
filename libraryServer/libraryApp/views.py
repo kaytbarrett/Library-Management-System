@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from rest_framework import generics
-from .models import Book, UserProfile, Author, Publisher, Genre, BookCopy, Checkout
+from libraryApp.models import Book, UserProfile, Author, Publisher, Genre, BookCopy, Checkout
 from .serializers import (
     BookSerializer, 
     UserProfileSerializer, 

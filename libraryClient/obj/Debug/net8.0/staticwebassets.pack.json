@@ -1,0 +1,41 @@
+{
+  "Files": [
+    {
+      "Id": "/Users/katiebarrett/Desktop/personalProjects/library/libraryClient/obj/Debug/net8.0/scopedcss/projectbundle/libraryClient.bundle.scp.css",
+      "PackagePath": "staticwebassets/libraryClient.bundle.scp.css"
+    },
+    {
+      "Id": "/Users/katiebarrett/Desktop/personalProjects/library/libraryClient/wwwroot/app.css",
+      "PackagePath": "staticwebassets/app.css"
+    },
+    {
+      "Id": "/Users/katiebarrett/Desktop/personalProjects/library/libraryClient/wwwroot/bootstrap/bootstrap.min.css",
+      "PackagePath": "staticwebassets/bootstrap/bootstrap.min.css"
+    },
+    {
+      "Id": "/Users/katiebarrett/Desktop/personalProjects/library/libraryClient/wwwroot/bootstrap/bootstrap.min.css.map",
+      "PackagePath": "staticwebassets/bootstrap/bootstrap.min.css.map"
+    },
+    {
+      "Id": "/Users/katiebarrett/Desktop/personalProjects/library/libraryClient/wwwroot/favicon.png",
+      "PackagePath": "staticwebassets/favicon.png"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.build.libraryClient.props",
+      "PackagePath": "build\\libraryClient.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.libraryClient.props",
+      "PackagePath": "buildMultiTargeting\\libraryClient.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.libraryClient.props",
+      "PackagePath": "buildTransitive\\libraryClient.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.libraryClient.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

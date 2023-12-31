@@ -1,0 +1,42 @@
+@page "/books"
+@inject HttpClient httpClient
+@using Newtonsoft.Json
+@using System.Collections.Generic
+
+<h3>Book Catalog</h3>
+
+@if (books == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var book in books)
+            {
+                <tr>
+                    <td>@book["title"]</td>
+                    <td>@book["author"]</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<Dictionary<string, object>> books = new List<Dictionary<string, object>>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        var response = await httpClient.GetStringAsync("http://127.0.0.1:8000/api/books/");
+        books = JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(response) ?? new List<Dictionary<string, object>>();
+    }
+}
+
