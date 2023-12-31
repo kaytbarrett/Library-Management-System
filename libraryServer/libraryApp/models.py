@@ -42,7 +42,7 @@ class Book(models.Model):
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     publication_date = models.DateField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    cover_image = models.ImageField(upload_to='book_covers/', blank=True, null=True)
+    cover_image = models.URLField(blank=True, null=True)
     genre = models.ForeignKey(Genre, on_delete=models.SET_NULL, null=True, blank=True)
     publisher = models.ForeignKey(Publisher, on_delete=models.SET_NULL, null=True, blank=True)
 
