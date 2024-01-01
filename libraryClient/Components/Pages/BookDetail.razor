@@ -1,0 +1,63 @@
+@page "/books/{id:int}"
+@inject HttpClient httpClient
+@using Newtonsoft.Json
+@using System.Collections.Generic
+
+<link rel="stylesheet" href="_content/bootstrap/dist/css/bootstrap.min.css" />
+
+<h3 style="display: flex; justify-content: center; padding-bottom: 15px">Book Details</h3>
+
+
+@if (book == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+
+<div class="container" style="display: flex; justify-content: center">
+    <div class="card mb-3" style="max-width: 750px;">
+    <div class="row g-0">
+        <div class="col-md-4">
+        <img src='@book["cover_image"]' class="img-fluid rounded-start" alt="Cover Image">
+        </div>
+        <div class="col-md-8">
+        <div class="card-body" style="display: flex; flex-direction:column; justify-content: center;">
+                <h5 class="card-title" style="display: flex; justify-content: center;">Title: @book["title"]</h5>
+                <p class="card-text" style="display: flex; justify-content: center;">Author: @book["author"]</p>
+                <p class="card-text" style="display: flex; justify-content: center;">Publication Date: @book["publication_date"]</p>
+                <p class="card-text" style="display: flex; justify-content: center;">Genre: @book["genre"]</p>
+                <p class="card-text" style="display: flex; justify-content: center;">Publisher: @book["publisher"]</p>
+                <p class="card-text" style="display: flex; justify-content: center; margin-bottom: 2rem;"><small class="text-body-secondary">Price to buy: $@book["price"]</small></p>
+                    <div style="display: flex; flex-direction:row; justify-content: center; margin-bottom: 1rem;">
+                    <a href='/' class="btn btn-light" style="margin-right: 2rem; width: 150px;">Checkout Book</a>
+                    <a href='/' class="btn btn-light" style="width: 150px;">Buy Book</a>
+                    </div>
+                <a href='/books' class="btn btn-link btn-sm" style="display: flex; justify-content: flex-end; margin-bottom: .5rem">Go Back</a>
+        </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+}
+
+@code {
+    [Parameter] public int Id { get; set; }
+
+    private int bookId;
+
+    protected override void OnInitialized()
+    {
+        // Set the bookId to the value of the route parameter
+        bookId = Id;
+    }
+
+    private Dictionary<string, object>? book;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var response = await httpClient.GetStringAsync("http://127.0.0.1:8000/api/books/" + bookId);
+        book = JsonConvert.DeserializeObject<Dictionary<string, object>>(response)!;
+    }
+}
