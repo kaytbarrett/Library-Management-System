@@ -3,6 +3,8 @@
 @using Newtonsoft.Json
 @using System.Collections.Generic
 
+<link rel="stylesheet" href="_content/bootstrap/dist/css/bootstrap.min.css" />
+
 <h3>Book Catalog</h3>
 
 @if (books == null)
@@ -11,25 +13,22 @@
 }
 else
 {
-    <table>
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>Author</th>
-                <th>Cover Image</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var book in books)
-            {
-                <tr>
-                    <td>@book["title"]</td>
-                    <td>@book["author"]</td>
-                    <td><img src='@book["cover_image"]' alt='Cover Image' width='25%' height='25%'/></td>
-                </tr>
-            }
-        </tbody>
-    </table>
+    <div class="container">
+    <div class="row" style="gap: 20px 30px">
+        @foreach (var book in books)
+                {
+                <div class="card" style="width: 18rem">
+                <img src='@book["cover_image"]' class="card-img-top" alt="Cover Image">
+                <div class="card-body">
+                    <h5 class="card-title">@book["title"]</h5>
+                    <p class="card-text">@book["author"]</p>
+                    <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                    <a href='/books/@book["id"]' class="btn btn-light">See Details</a>
+                </div>
+                </div>
+                }
+    </div>
+    </div>
 }
 
 @code {

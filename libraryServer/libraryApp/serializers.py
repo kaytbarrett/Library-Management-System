@@ -2,9 +2,14 @@ from rest_framework import serializers
 from libraryApp.models import Book, UserProfile, Author, Publisher, Genre, BookCopy, Checkout
 
 class BookSerializer(serializers.ModelSerializer):
-    class Meta:
+     class Meta:
         model = Book
-        fields = ['title', 'author', 'publication_date', 'price', 'cover_image', 'genre', 'publisher']
+        fields = ['id', 'title', 'author', 'publication_date', 'price', 'cover_image', 'genre', 'publisher']
+
+        # Add serializers for related fields
+        author = serializers.CharField(source='author.name')
+        genre = serializers.CharField(source='genre.name')
+        publisher = serializers.CharField(source='publisher.name')
 
 class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:

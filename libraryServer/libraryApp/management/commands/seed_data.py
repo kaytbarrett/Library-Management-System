@@ -61,9 +61,14 @@ class Command(BaseCommand):
         ]
 
         for book_info in book_data:
-            author, _ = Author.objects.get_or_create(name=book_info['author'])
-            publisher = Publisher.objects.first()  # Use the default publisher
-            genre = Genre.objects.first()   # Use t default genre
+            author_name = book_info['author']
+            author, _ = Author.objects.get_or_create(name=author_name)
+
+            genre_name = book_info.get('genre', 'Fiction')  # Use 'Fiction' as default genre if not provided
+            genre, _ = Genre.objects.get_or_create(name=genre_name)
+
+            publisher_name = book_info.get('publisher', 'Penguin Classics')  # Use 'Penguin Classics' as default publisher if not provided
+            publisher, _ = Publisher.objects.get_or_create(name=publisher_name)
 
             Book.objects.create(
                 title=book_info['title'],
