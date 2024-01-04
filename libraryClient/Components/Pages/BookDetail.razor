@@ -2,6 +2,8 @@
 @inject HttpClient httpClient
 @using Newtonsoft.Json
 @using System.Collections.Generic
+@inject libraryClient.Components.Services.IAuthenticationService AuthenticationService
+
 
 <link rel="stylesheet" href="_content/bootstrap/dist/css/bootstrap.min.css" />
 
@@ -33,6 +35,10 @@ else
                     <a href='/' class="btn btn-light" style="margin-right: 2rem; width: 150px;">Checkout Book</a>
                     <a href='/' class="btn btn-light" style="width: 150px;">Buy Book</a>
                     </div>
+                        <div style="display: flex; flex-direction:row; justify-content: center; margin-bottom: 1rem;">
+                                        <a href='/' class="btn btn-light" style="margin-right: 2rem; width: 150px;">Checkout Book</a>
+                                        <a href='/' class="btn btn-light" style="width: 150px;">Buy Book</a>
+                                        </div>
                 <a href='/books' class="btn btn-link btn-sm" style="display: flex; justify-content: flex-end; margin-bottom: .5rem">Go Back</a>
         </div>
         </div>

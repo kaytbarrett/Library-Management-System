@@ -22,11 +22,12 @@ from libraryApp.views import (BookListCreateView, BookRUDView,
                               PublisherListCreateView, PublisherRUDView,
                               GenreListCreateView, GenreRUDView,
                               BookCopyListCreateView, BookCopyRUDView,
-                              CheckoutListCreateView, CheckoutRUDView)
+                              CheckoutListCreateView, CheckoutRUDView, login_api)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
+    path('api/login/', login_api, name='api-login'),
     path('api/books/', BookListCreateView.as_view(), name="book-list"),
     path('api/books/<int:pk>/', BookRUDView.as_view(), name="book-detail"),
     path('api/users/', UserProfileListCreateView.as_view(), name="userprofile-list"),

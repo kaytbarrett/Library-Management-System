@@ -1,5 +1,6 @@
 using libraryClient.Components;
 using Microsoft.Extensions.DependencyInjection;
+using libraryClient.Components.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,8 +8,13 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
-// AddHttpClient configuration
-builder.Services.AddHttpClient();
+// Add named HttpClient configuration with cookie support
+builder.Services.AddHttpClient("MyApiClient").ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
+{
+    UseCookies = true
+});
+
+builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
 
 var app = builder.Build();
 
