@@ -29,7 +29,7 @@ from django.middleware.csrf import get_token
 @api_view(['GET', 'POST'])
 @permission_classes([AllowAny]) 
 def login_api(request):
-    
+
     print(f"Request Headers: {request.headers}")
 
     if request.method == 'GET':
