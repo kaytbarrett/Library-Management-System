@@ -1,0 +1,46 @@
+@page "/user/{id:int}"
+@inject HttpClient httpClient
+@using Newtonsoft.Json
+@using System.Collections.Generic
+
+<link rel="stylesheet" href="_content/bootstrap/dist/css/bootstrap.min.css" />
+
+
+
+
+@if (user == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+<h3 style="margin-bottom: 18px">Hey @user["name"]!</h3>
+<div style="display: flex; flex-direction: column">
+<h5 style="margin-bottom: 12px">Profile Information</h5>
+<p style="margin-bottom: 10px">@user["bio"] Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id donec ultrices tincidunt arcu non sodales. In massa tempor nec feugiat. </p>
+<p style="font-size: 11px; color: #5D5D5B; margin-bottom: 2px;">Mobile Phone Number</p>
+<p style="margin-bottom: 8px">@user["phone_number"]</p>
+<p style="font-size: 11px; color: #5D5D5B; margin-bottom: 2px;">Email</p>
+<p style="margin-bottom: 8px">@user["email"]</p>  
+</div> 
+}
+
+@code {
+    [Parameter] public int Id { get; set; }
+
+    private int userId;
+
+    protected override void OnInitialized()
+    {
+        // Set the bookId to the value of the route parameter
+        userId = Id;
+    }
+
+    private Dictionary<string, object>? user;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var response = await httpClient.GetStringAsync("http://127.0.0.1:8000/api/users/" + userId);
+        user = JsonConvert.DeserializeObject<Dictionary<string, object>>(response)!;
+    }
+}
