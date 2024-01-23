@@ -13,6 +13,7 @@
     <SourceRoot Include="/Users/katiebarrett/.nuget/packages/" />
   </ItemGroup>
   <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <Import Project="$(NuGetPackageRoot)microsoft.aspnetcore.components.web.extensions/5.0.0-preview9.20513.1/buildTransitive/Microsoft.AspNetCore.Components.Web.Extensions.props" Condition="Exists('$(NuGetPackageRoot)microsoft.aspnetcore.components.web.extensions/5.0.0-preview9.20513.1/buildTransitive/Microsoft.AspNetCore.Components.Web.Extensions.props')" />
     <Import Project="$(NuGetPackageRoot)blazorise/1.4.0/buildTransitive/Blazorise.props" Condition="Exists('$(NuGetPackageRoot)blazorise/1.4.0/buildTransitive/Blazorise.props')" />
     <Import Project="$(NuGetPackageRoot)blazorise.bootstrap/1.4.0/buildTransitive/Blazorise.Bootstrap.props" Condition="Exists('$(NuGetPackageRoot)blazorise.bootstrap/1.4.0/buildTransitive/Blazorise.Bootstrap.props')" />
   </ImportGroup>

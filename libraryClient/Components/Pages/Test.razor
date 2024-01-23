@@ -1,0 +1,17 @@
+@page "/redirect"
+@inject NavigationManager NavManager
+@rendermode InteractiveServer
+
+
+<h1>Redirect Page</h1>
+
+<p>Redirecting to Default Page</p>
+
+<button @onclick="RedirectToDefault">Click to Redirect</button>
+
+@code {
+    private void RedirectToDefault()
+    {
+        NavManager.NavigateTo("/", forceLoad: true);
+    }
+}
