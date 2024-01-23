@@ -14,15 +14,32 @@
 }
 else
 {
-<h3 style="margin-bottom: 18px">Hey @user["name"]!</h3>
+<article style="display: flex; flex-direction: column;">
+
+
+<div style="display: flex; flex-direction: row; margin-bottom: 30px; margin-top: 10px;">
+<div style="display: flex; flex-direction: column; padding-right: 55px;">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/1200px-Default_pfp.svg.png" alt="Profile pic"  width="150px" />
+<h4 style="margin-top: 10px;">Hey @user["name"]!</h4>
+</div> 
+
 <div style="display: flex; flex-direction: column">
 <h5 style="margin-bottom: 12px">Profile Information</h5>
-<p style="margin-bottom: 10px">@user["bio"] Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id donec ultrices tincidunt arcu non sodales. In massa tempor nec feugiat. </p>
+<p style="margin-bottom: 10px; font-size: 14px; max-width: 700px;">@user["bio"] Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id donec ultrices tincidunt arcu non sodales. In massa tempor nec feugiat. </p>
 <p style="font-size: 11px; color: #5D5D5B; margin-bottom: 2px;">Mobile Phone Number</p>
 <p style="margin-bottom: 8px">@user["phone_number"]</p>
 <p style="font-size: 11px; color: #5D5D5B; margin-bottom: 2px;">Email</p>
 <p style="margin-bottom: 8px">@user["email"]</p>  
+</div>
 </div> 
+
+<div class="card" style="width: 58rem;">
+<div style="margin: 20px">
+<h3> Here are your checked out books:</h3>
+<p style="padding-top: 20px; font-size: 13px; color: #5D5D5B;"> Looks like you have no books checked out at this time. Please see our catalog to start browsing available books!</p>
+</div>
+</div>
+</article>
 }
 
 @code {
