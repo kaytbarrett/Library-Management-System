@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "b9ifY2OGi0Ju092fcnSP4QRLLpodz2bE22SJB+Y5vxU=",
+  "Hash": "bDiMD+UAxiak2WW3a1Z29VlO+Fdxk7cyP/Jz4u2F0lI=",
   "Source": "libraryClient",
   "BasePath": "_content/libraryClient",
   "Mode": "Default",
@@ -775,6 +775,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "/Users/katiebarrett/.nuget/packages/blazorise/1.4.0/staticwebassets/vendors/sha512.js"
+    },
+    {
+      "Identity": "/Users/katiebarrett/.nuget/packages/microsoft.aspnetcore.components.web.extensions/5.0.0-preview9.20513.1/staticwebassets/headManager.js",
+      "SourceId": "Microsoft.AspNetCore.Components.Web.Extensions",
+      "SourceType": "Package",
+      "ContentRoot": "/Users/katiebarrett/.nuget/packages/microsoft.aspnetcore.components.web.extensions/5.0.0-preview9.20513.1/staticwebassets/",
+      "BasePath": "_content/Microsoft.AspNetCore.Components.Web.Extensions",
+      "RelativePath": "headManager.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "/Users/katiebarrett/.nuget/packages/microsoft.aspnetcore.components.web.extensions/5.0.0-preview9.20513.1/staticwebassets/headManager.js"
     },
     {
       "Identity": "/Users/katiebarrett/Desktop/personalProjects/library/libraryClient/obj/Debug/net8.0/scopedcss/bundle/libraryClient.styles.css",

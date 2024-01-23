@@ -4,11 +4,14 @@
 @using System.Net.Http.Json
 @using Microsoft.AspNetCore.Components.Forms
 @inject Microsoft.AspNetCore.Components.NavigationManager NavigationManager
+@using Microsoft.AspNetCore.Components.Web
 @using System.Text;
 @using System.Text.Json;
 @using System.Net.Http.Headers;
 @using System.Net;
 @using System.ComponentModel.DataAnnotations
+@rendermode InteractiveServer
+
 
 <article style="display: flex; justify-content: center;">
 <div class="card text-bg-light mb-3" style="max-width: 18rem;">
@@ -43,7 +46,24 @@
 @code {
     private string? csrfToken;
     private int? userId;
-    private LoginModel loginModel = new LoginModel();
+    private ApiResponse apiResponse = new ApiResponse();
+
+
+    private LoginModel loginModel = new LoginModel
+    {
+        Username = "user1",
+        Password = "password1"
+    };
+
+    private class ApiResponse
+    {
+        public bool Success { get; set; }
+        public string? Token { get; set; }
+        public int? User_Id { get; set; }
+        public string? ErrorMessage { get; set; }
+        public string? CsrfToken { get; set; }
+        // Other properties based on your API response
+    }
     
 
     protected override async Task OnInitializedAsync()
@@ -138,41 +158,42 @@
 
                 var response = await httpClient.PostAsync("http://127.0.0.1:8000/api/login/", requestContent);
                 response.EnsureSuccessStatusCode();
-
+                
                 // Parse and handle the login response appropriately
-                var responseData = await response.Content.ReadFromJsonAsync<ApiResponse>();
+                var apiResponse = await response.Content.ReadFromJsonAsync<ApiResponse>();
+                Console.WriteLine($"Success: {apiResponse.Success}");
+                Console.WriteLine($"Token: {apiResponse.Token}");
+                Console.WriteLine($"UserId: {apiResponse.User_Id}");
 
-                if (responseData.Success)
+                if (apiResponse.Success)
                 {
-                    AuthenticationService.SetToken(responseData.Token);
-                    userId = responseData.UserId; // Set the user ID for further use
-                    NavigationManager.NavigateTo("/");
-                }
-                else
+                    Console.WriteLine("Login successful!");
+                    
+                    AuthenticationService.SetToken(apiResponse.Token);
+                    Console.WriteLine($"Token set: {apiResponse.Token}");
+                    
+                    userId = apiResponse.User_Id;
+                    Console.WriteLine($"User ID set: {userId}");
+
+                    NavigationManager.NavigateTo($"/user/{userId}", forceLoad: true);
+
+                } else
                 {
                     // Failed login, handle accordingly (show error message, etc.)
-                    Console.WriteLine($"Login failed: {responseData.ErrorMessage}");
+                    Console.WriteLine($"Login failed: {apiResponse.ErrorMessage}");
+                }
+
+                    
+                    
+                    
                 }
             }
-        }
         catch (Exception ex)
         {
             // Handle error (show message, log, etc.)
             Console.WriteLine($"Error handling login: {ex.Message}");
         }
     }
+                
 
-
-    private class ApiResponse
-    {
-        public bool Success { get; set; }
-        public string? Token { get; set; }
-        public int? UserId { get; set; }
-        public string? ErrorMessage { get; set; }
-        public string? CsrfToken { get; set; }
-        // Other properties based on your API response
-    }
-
-
-   
 }
