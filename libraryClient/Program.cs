@@ -15,6 +15,8 @@ builder.Services.AddHttpClient("MyApiClient").ConfigurePrimaryHttpMessageHandler
 });
 
 builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
+builder.Services.AddSingleton<SharedStateService>();
+
 
 var app = builder.Build();
 
