@@ -10,6 +10,7 @@
 @using System.Net.Http.Headers;
 @using System.Net;
 @using System.ComponentModel.DataAnnotations
+@inject libraryClient.Components.Services.SharedStateService SharedStateService
 @rendermode InteractiveServer
 
 
@@ -47,6 +48,8 @@
     private string? csrfToken;
     private int? userId;
     private ApiResponse apiResponse = new ApiResponse();
+    private string userHref;
+
 
 
     private LoginModel loginModel = new LoginModel
@@ -168,14 +171,21 @@
                 if (apiResponse.Success)
                 {
                     Console.WriteLine("Login successful!");
-                    
-                    AuthenticationService.SetToken(apiResponse.Token);
-                    Console.WriteLine($"Token set: {apiResponse.Token}");
-                    
-                    userId = apiResponse.User_Id;
-                    Console.WriteLine($"User ID set: {userId}");
 
-                    NavigationManager.NavigateTo($"/user/{userId}", forceLoad: true);
+                    // Use AuthenticationService to set token and user ID
+                    AuthenticationService.SetToken(apiResponse.Token, apiResponse.User_Id ?? 0);
+                    Console.WriteLine($"Token set: {apiResponse.Token}");
+                    Console.WriteLine($"UserId set: {apiResponse.User_Id}");
+
+                    // Update userHref based on the received User_Id
+                    userHref = apiResponse.User_Id.HasValue ? $"/user/{apiResponse.User_Id}" : string.Empty;
+
+                    // Update shared state with the new userHref
+                    SharedStateService.UserHref = userHref;
+
+                    // Redirect to the user profile page using the stored user ID
+                    NavigationManager.NavigateTo($"/user/{apiResponse.User_Id}", forceLoad: true);
+
 
                 } else
                 {

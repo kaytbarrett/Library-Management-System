@@ -1,4 +1,31 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
+﻿@inject libraryClient.Components.Services.IAuthenticationService AuthenticationService
+@inject Microsoft.JSInterop.IJSRuntime JSRuntime
+@inject libraryClient.Components.Services.SharedStateService SharedStateService
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+
+
+
+@code {
+     private string userHref;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await UpdateUserHref();
+
+        // Subscribe to updates in the shared state
+        SharedStateService.OnUserHrefUpdated += async () => await UpdateUserHref();
+    }
+
+    private async Task UpdateUserHref()
+    {
+        // Use the shared state value
+        userHref = SharedStateService.UserHref;
+    }
+}
+
+<div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="">Library Management System</a>
     </div>
@@ -26,8 +53,18 @@
             </NavLink>
         </div>
 
-   
+        <div class="nav-item special-item px-3">
+            <NavLink class="nav-link" href="@userHref" Match="NavLinkMatch.All">
+                <div class="custom-icon-container">
+                    <span class="bi bi-person-circle"></span> Profile
+                </div>            
+            </NavLink>
+        </div>
+        
 
     </nav>
 </div>
+
+
+
 
