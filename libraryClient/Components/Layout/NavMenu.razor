@@ -8,6 +8,17 @@
 
 
 @code {
+
+    [Parameter]
+    public string UserHref { get; set; }
+
+    // Lifecycle method to react to changes in parameters
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+        // Additional logic, if needed, when parameters are set
+    }
+
      private string userHref;
 
     protected override async Task OnInitializedAsync()
@@ -20,8 +31,8 @@
 
     private async Task UpdateUserHref()
     {
-        // Use the shared state value
-        userHref = SharedStateService.UserHref;
+        // Use the shared state value or the parameter value if provided
+        userHref = !string.IsNullOrEmpty(UserHref) ? UserHref : SharedStateService.UserHref;
     }
 }
 
@@ -61,7 +72,7 @@
             </NavLink>
         </div>
         
-
+        
     </nav>
 </div>
 
