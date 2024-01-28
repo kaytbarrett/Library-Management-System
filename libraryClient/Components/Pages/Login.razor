@@ -183,6 +183,10 @@
                     // Update shared state with the new userHref
                     SharedStateService.UserHref = userHref;
 
+                     // Check the authentication state
+                    bool isAuthenticated = AuthenticationService.IsAuthenticated();
+                    Console.WriteLine($"IsAuthenticated: {isAuthenticated}");
+
                     // Redirect to the user profile page using the stored user ID
                     NavigationManager.NavigateTo($"/user/{apiResponse.User_Id}", forceLoad: true);
 
